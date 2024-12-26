@@ -189,19 +189,19 @@ class ModuleFunctions extends Module
             $cp = $this->getCP($whmcsService->server);
             $request = $this->initCurl($cp['token']);
             $applyConfigToggles = [
-                "backupPlan" => 'false',
-                "cpu" => 'true',
-                "memory" => 'true',
-                "primaryDiskReadIOPS" => 'false',
-                "primaryDiskReadThroughput" => 'false',
-                "primaryDiskSize" => 'false',
-                "primaryDiskWriteIOPS" => 'false',
-                "primaryDiskWriteThroughput" => 'false',
-                "primaryNetworkInboundSpeed" => 'false',
-                "primaryNetworkOutboundSpeed" => 'false',
-                "primaryNetworkTraffic" => 'false'
+                'backupPlan' => false,
+                'cpu' => true,
+                'memory' => true,
+                'primaryDiskReadIOPS' => false,
+                'primaryDiskReadThroughput' => false,
+                'primaryDiskSize' => false,
+                'primaryDiskWriteIOPS' => false,
+                'primaryDiskWriteThroughput' => false,
+                'primaryNetworkInboundSpeed' => false,
+                'primaryNetworkOutboundSpeed' => false,
+                'primaryNetworkTraffic' => false
             ];
-            $request->addOption(CURLOPT_POSTFIELDS, http_build_query($applyConfigToggles));
+            $request->addOption(CURLOPT_POSTFIELDS, json_encode($applyConfigToggles));
             $data = $request->put($cp['url'] . '/servers/' . $service->server_id . '/package/' . $params['configoption2']);
             $data = json_decode($data);
 
