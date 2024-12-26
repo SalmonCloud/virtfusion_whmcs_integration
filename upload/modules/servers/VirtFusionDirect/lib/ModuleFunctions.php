@@ -201,7 +201,7 @@ class ModuleFunctions extends Module
                 "primaryNetworkOutboundSpeed" => 'false',
                 "primaryNetworkTraffic" => 'false'
             ];
-            $request->addOption(CURLOPT_POSTFIELDS, http_build_query($applyConfigToggles));
+            $request->addOption(CURLOPT_POSTFIELDS, json_encode($applyConfigToggles));
             $data = $request->put($cp['url'] . '/servers/' . $service->server_id . '/package/' . $params['configoption2']);
             $data = json_decode($data);
 
